@@ -73,6 +73,7 @@ mtr
 base-devel
 mlocate
 man
+wget
 EOF
 
 # check/add sudo for our user
