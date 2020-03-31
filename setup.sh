@@ -86,6 +86,11 @@ if ! grep -q "$NEWUSER ALL" /etc/sudoers; then
     echo "$NEWUSER ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 fi
 
+# disable ssh with password
+if ! grep -q -e "^PasswordAuthentication no" /etc/ssh/sshd_config; then
+    echo "PasswordAuthentication no" >>/etc/ssh/sshd_config
+fi
+
 # setup trizen
 su $NEWUSER <<EOF
 git clone https://aur.archlinux.org/trizen.git
