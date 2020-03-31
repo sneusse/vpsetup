@@ -64,6 +64,7 @@ mkdir -p $SCRATCH && cd $SCRATCH && chown $NEWUSER .
 # install base packages
 pacman --needed --noconfirm -S - <<EOF
 sudo
+git
 nano
 zsh
 tmux
