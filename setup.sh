@@ -46,7 +46,7 @@ if [ "$USER" == "$NEWUSER" ]; then
     git remote add origin git@github.com:sneusse/dofiles.git
     git fetch origin master
     git reset --hard origin/master
-    git pull origin/master
+    git pull origin master
     git branch --set-upstream-to=origin/master master
 
     sudo updatedb
