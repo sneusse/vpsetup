@@ -28,6 +28,7 @@ if [ "$USER" == "$NEWUSER" ]; then
     git remote add first https://github.com/sneusse/dofiles.git
     git fetch first master
     git reset --hard first/master
+    git pull first master
 
     # hide my private key
     chmod 400 ~/.ssh/id_rsa
@@ -44,6 +45,8 @@ if [ "$USER" == "$NEWUSER" ]; then
     git remote remove first
     git remote add origin git@github.com:sneusse/dofiles.git
     git fetch origin master
+    git reset --hard origin/master
+    git pull origin/master
     git branch --set-upstream-to=origin/master master
 
     sudo updatedb
