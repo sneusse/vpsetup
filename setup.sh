@@ -78,6 +78,8 @@ base-devel
 mlocate
 man
 wget
+pv
+mc
 EOF
 
 # check/add sudo for our user
