@@ -26,7 +26,8 @@ if [ "$USER" == "$NEWUSER" ]; then
     # interactive part
     git init
     git remote add first https://github.com/sneusse/dofiles.git
-    git pull first master
+    git fetch first
+    git reset --hard first master
 
     # hide my private key
     chmod 400 ~/.ssh/id_rsa
@@ -42,7 +43,7 @@ if [ "$USER" == "$NEWUSER" ]; then
     # now that we have the privatekey...
     git remote remove first
     git remote add origin git@github.com:sneusse/dofiles.git
-    git fetch origin master
+    git fetch origin
     git reset --hard origin/master
     git pull origin master
     git branch --set-upstream-to=origin/master master
