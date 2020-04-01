@@ -27,7 +27,7 @@ if [ "$USER" == "$NEWUSER" ]; then
     git init
     git remote add first https://github.com/sneusse/dofiles.git
     git fetch first
-    git reset --hard first master
+    git reset --hard first/master
 
     # hide my private key
     chmod 400 ~/.ssh/id_rsa
