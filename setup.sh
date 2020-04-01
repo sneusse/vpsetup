@@ -106,6 +106,7 @@ if ! grep -q -e "^de_DE" /etc/locale.gen; then
 fi
 
 # set locale
+locale-gen
 localectl set-locale LANG=en_US.UTF-8
 
 # setup trizen
