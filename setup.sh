@@ -90,6 +90,24 @@ if ! grep -q -e "^PasswordAuthentication no" /etc/ssh/sshd_config; then
     echo "PasswordAuthentication no" >>/etc/ssh/sshd_config
 fi
 
+# reset port for ssh
+if ! grep -q -e "^Port 20002" /etc/ssh/sshd_config; then
+    echo "Port 20002" >>/etc/ssh/sshd_config
+fi
+
+# gen locale US
+if ! grep -q -e "^en_US" /etc/locale.gen; then
+    echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
+fi
+
+# gen locale DE
+if ! grep -q -e "^de_DE" /etc/locale.gen; then
+    echo de_DE.UTF-8 UTF-8 >> /etc/locale.gen
+fi
+
+# set locale
+localectl set-locale LANG=en_US.UTF-8
+
 # setup trizen
 su $NEWUSER <<EOF
 git clone https://aur.archlinux.org/trizen.git
