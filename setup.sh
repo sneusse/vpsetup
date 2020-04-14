@@ -121,4 +121,5 @@ EOF
 # execute user init script
 runuser -u $NEWUSER bash $SCRIPT
 
+systemctl restart sshd
 echo "login with ssh to your new user!"
