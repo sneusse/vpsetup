@@ -23,16 +23,16 @@ if [ "$USER" == "$NEWUSER" ]; then
     trizen --noconfirm --needed -S micro
     trizen --noconfirm -Sc
 
-    alias cfg='/usr/bin/git --git-dir=$HOME/.cfgrepo/ --work-tree=$HOME'
-    alias secret='/usr/bin/git --git-dir=$HOME/.identity/ --work-tree=$HOME'
+    cfg='/usr/bin/git --git-dir=$HOME/.cfgrepo/ --work-tree=$HOME'
+    secret='/usr/bin/git --git-dir=$HOME/.identity/ --work-tree=$HOME'
 
     # interactive part
 
     git init --bare $HOME/.identity
 
-    secret remote add first https://github.com/sneusse/identity.git
-    secret fetch first
-    secret reset --hard first/master
+    $secret remote add first https://github.com/sneusse/identity.git
+    $secret fetch first
+    $secret reset --hard first/master
 
     # hide my private key
     chmod 400 ~/.ssh/id_rsa
@@ -43,16 +43,16 @@ if [ "$USER" == "$NEWUSER" ]; then
     ssh -oStrictHostKeyChecking=no -T git@github.com
 
     # now that we have the privatekey...
-    secret remote remove first
-    secret remote add origin git@github.com:sneusse/identity.git
-    secret fetch origin
-    secret reset --hard origin/master
-    secret pull origin master
-    secret branch --set-upstream-to=origin/master master
+    $secret remote remove first
+    $secret remote add origin git@github.com:sneusse/identity.git
+    $secret fetch origin
+    $secret reset --hard origin/master
+    $secret pull origin master
+    $secret branch --set-upstream-to=origin/master master
 
     git init --bare $HOME/.cfgrepo
-    cfg remote add origin git@github.com:sneusse/dotfiles.git
-    cfg pull origin master
+    $cfg remote add origin git@github.com:sneusse/dotfiles.git
+    $cfg pull origin master
     
 
     # change shell
