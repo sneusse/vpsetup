@@ -60,7 +60,6 @@ if [ "$USER" == "$NEWUSER" ]; then
 
     sudo updatedb
 
-    exec zsh
     echo "all done!"
     exit 
 fi
