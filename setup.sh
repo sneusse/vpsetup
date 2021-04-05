@@ -53,6 +53,7 @@ if [ "$USER" == "$NEWUSER" ]; then
 
     git init --bare $HOME/.cfgrepo
     $cfg remote add origin git@github.com:sneusse/dotfiles.git
+    $cfg fetch origin
     $cfg reset --hard origin/master
 
     # change shell
