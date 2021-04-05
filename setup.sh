@@ -50,6 +50,7 @@ if [ "$USER" == "$NEWUSER" ]; then
     $secret reset --hard origin/master
     $secret pull origin master
     $secret branch --set-upstream-to=origin/master master
+    $secret config --local status.showUntrackedFiles no
 
     git init --bare $HOME/.cfgrepo
     $cfg remote add origin git@github.com:sneusse/dotfiles.git
@@ -57,10 +58,10 @@ if [ "$USER" == "$NEWUSER" ]; then
     $cfg reset --hard origin/master
     $cfg pull origin master
     $cfg branch --set-upstream-to=origin/master master
+    $cfg config --local status.showUntrackedFiles no
 
     # change shell
     sudo chsh -s /bin/zsh $NEWUSER
-
     sudo updatedb
 
     echo "all done!"
