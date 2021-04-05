@@ -23,17 +23,19 @@ if [ "$USER" == "$NEWUSER" ]; then
     trizen --noconfirm --needed -S micro
     trizen --noconfirm -Sc
 
+    alias cfg='/usr/bin/git --git-dir=$HOME/.cfgrepo/ --work-tree=$HOME'
+    alias secret='/usr/bin/git --git-dir=$HOME/.identity/ --work-tree=$HOME'
+
     # interactive part
-    git init
-    git remote add first https://github.com/sneusse/dofiles.git
-    git fetch first
-    git reset --hard first/master
+
+    git init --bare $HOME/.identity
+
+    secret remote add first https://github.com/sneusse/identity.git
+    secret fetch first
+    secret reset --hard first/master
 
     # hide my private key
     chmod 400 ~/.ssh/id_rsa
-
-    # change shell
-    sudo chsh -s /bin/zsh $NEWUSER
 
     # load ssh key
     eval "$(ssh-agent -s)"
@@ -41,12 +43,20 @@ if [ "$USER" == "$NEWUSER" ]; then
     ssh -oStrictHostKeyChecking=no -T git@github.com
 
     # now that we have the privatekey...
-    git remote remove first
-    git remote add origin git@github.com:sneusse/dofiles.git
-    git fetch origin
-    git reset --hard origin/master
-    git pull origin master
-    git branch --set-upstream-to=origin/master master
+    secret remote remove first
+    secret remote add origin git@github.com:sneusse/identity.git
+    secret fetch origin
+    secret reset --hard origin/master
+    secret pull origin master
+    secret branch --set-upstream-to=origin/master master
+
+    git init --bare $HOME/.cfgrepo
+    cfg remote add origin git@github.com:sneusse/dotfiles.git
+    cfg pull origin master
+    
+
+    # change shell
+    sudo chsh -s /bin/zsh $NEWUSER
 
     sudo updatedb
     echo "all done!"
