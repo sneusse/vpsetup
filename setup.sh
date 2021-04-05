@@ -53,13 +53,14 @@ if [ "$USER" == "$NEWUSER" ]; then
 
     git init --bare $HOME/.cfgrepo
     $cfg remote add origin git@github.com:sneusse/dotfiles.git
-    $cfg pull origin master
-    
+    $cfg reset --hard origin/master
 
     # change shell
     sudo chsh -s /bin/zsh $NEWUSER
 
     sudo updatedb
+
+    exec zsh
     echo "all done!"
     exit 
 fi
