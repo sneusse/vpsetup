@@ -55,6 +55,8 @@ if [ "$USER" == "$NEWUSER" ]; then
     $cfg remote add origin git@github.com:sneusse/dotfiles.git
     $cfg fetch origin
     $cfg reset --hard origin/master
+    $cfg pull origin master
+    $cfg branch --set-upstream-to=origin/master master
 
     # change shell
     sudo chsh -s /bin/zsh $NEWUSER
